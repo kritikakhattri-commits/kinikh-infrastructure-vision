@@ -1,7 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, CheckCircle2, Download, MapPin, Send } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
-import { findProject } from "@/lib/projects";
+import { findProject, type Project } from "@/lib/projects";
+
 
 export const Route = createFileRoute("/projects/$projectId")({
   loader: ({ params }) => {
@@ -34,7 +35,7 @@ export const Route = createFileRoute("/projects/$projectId")({
 });
 
 function ProjectDetails() {
-  const { project } = Route.useLoaderData();
+  const { project } = Route.useLoaderData() as { project: Project };
 
   return (
     <SiteLayout>
