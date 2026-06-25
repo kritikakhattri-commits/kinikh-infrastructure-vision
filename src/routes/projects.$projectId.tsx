@@ -111,7 +111,7 @@ function ProjectDetails() {
               partners. {project.name} is no exception.
             </p>
           </div>
-          <div className="rounded-2xl bg-beige p-8">
+          <div className="rounded-2xl bg-white p-8">
             <span className="eyebrow">Project Highlights</span>
             <ul className="mt-6 space-y-4">
               {project.highlights.map((h) => (
@@ -126,7 +126,7 @@ function ProjectDetails() {
       </section>
 
       {/* Amenities */}
-      <section className="bg-beige py-20">
+      <section className="bg-white py-20">
         <div className="container-px mx-auto max-w-7xl">
           <span className="eyebrow">Amenities & Features</span>
           <h2 className="mt-5 font-serif text-4xl leading-tight md:text-5xl">
@@ -178,7 +178,7 @@ function ProjectDetails() {
       </section>
 
       {/* Brochure + Enquiry */}
-      <section className="bg-beige py-20">
+      <section className="bg-white py-20">
         <div className="container-px mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
           <div className="rounded-2xl bg-foreground p-10 text-background">
             <span className="eyebrow text-gold">Project Brochure</span>

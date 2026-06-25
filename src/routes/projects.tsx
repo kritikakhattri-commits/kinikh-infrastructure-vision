@@ -44,7 +44,7 @@ function ProjectsPage() {
               className={`rounded-full px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] transition-colors ${
                 status === s
                   ? "bg-foreground text-background"
-                  : "bg-card text-foreground ring-1 ring-border hover:bg-beige"
+                  : "bg-card text-foreground ring-1 ring-border hover:bg-gray-50"
               }`}
             >
               {s}

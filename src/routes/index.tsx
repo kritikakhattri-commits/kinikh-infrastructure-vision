@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
   Building2,
-  CheckCircle2,
-  ChevronRight,
   Compass,
   HardHat,
   Hammer,
@@ -12,14 +11,15 @@ import {
   LineChart,
   MapPin,
   Quote,
-  Search,
   Star,
-  TrendingUp,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
+import { ShowcaseSection } from "@/components/site/ShowcaseSection";
+import InfrastructureRewired from "@/components/InfrastructureRewired";
+import BottomVideoCTA from "@/components/BottomVideoCTA";
+import KinikhServiceTabs from "@/components/KinikhServiceTabs";
 import { PROJECTS } from "@/lib/projects";
 import hero from "@/assets/hero.jpg";
-import about from "@/assets/about.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,26 +42,65 @@ export const Route = createFileRoute("/")({
 });
 
 const SERVICES = [
-  { icon: Home, title: "Residential Development", desc: "Boutique homes and gated communities crafted for modern families." },
-  { icon: Building2, title: "Commercial Projects", desc: "Grade A office, retail and hospitality assets built to perform." },
-  { icon: Compass, title: "Land Development", desc: "RERA-approved plotted townships with full underground infrastructure." },
-  { icon: HardHat, title: "Infrastructure Planning", desc: "Corridors, transit nodes and civic infrastructure delivered end to end." },
-  { icon: LineChart, title: "Property Investment Guidance", desc: "Curated investment opportunities backed by transparent diligence." },
-  { icon: Hammer, title: "Construction Management", desc: "Quality-led execution with proven cost, time and safety discipline." },
+  {
+    icon: Home,
+    title: "Residential Development",
+    desc: "Boutique homes and gated communities crafted for modern families.",
+  },
+  {
+    icon: Building2,
+    title: "Commercial Projects",
+    desc: "Grade A office, retail and hospitality assets built to perform.",
+  },
+  {
+    icon: Compass,
+    title: "Land Development",
+    desc: "RERA-approved plotted townships with full underground infrastructure.",
+  },
+  {
+    icon: HardHat,
+    title: "Infrastructure Planning",
+    desc: "Corridors, transit nodes and civic infrastructure delivered end to end.",
+  },
+  {
+    icon: LineChart,
+    title: "Property Investment Guidance",
+    desc: "Curated investment opportunities backed by transparent diligence.",
+  },
+  {
+    icon: Hammer,
+    title: "Construction Management",
+    desc: "Quality-led execution with proven cost, time and safety discipline.",
+  },
 ];
 
-const STATS = [
-  { value: "10+", label: "Years of Industry Experience" },
-  { value: "25+", label: "Projects Planned & Delivered" },
-  { value: "100%", label: "Transparent Process" },
-  { value: "360°", label: "End-to-End Development Support" },
+const HERO_STATS = [
+  { icon: Building2, value: "25+", label: "Projects Planned" },
+  { icon: Star, value: "10+", label: "Years Experience", fill: true },
+  { icon: MapPin, value: "15+", label: "Prime Locations" },
 ];
 
 const PROCESS = [
-  { step: "01", title: "Consultation", desc: "We listen to your vision and audit feasibility from day one." },
-  { step: "02", title: "Site Planning", desc: "Detailed surveys, master planning and statutory groundwork." },
-  { step: "03", title: "Development Strategy", desc: "Financial modelling, phasing and design language for the asset." },
-  { step: "04", title: "Construction & Delivery", desc: "On-time, on-budget execution with rigorous quality assurance." },
+  {
+    step: "01",
+    title: "Consultation",
+    desc: "We listen to your vision and audit feasibility from day one.",
+  },
+  {
+    step: "02",
+    title: "Site Planning",
+    desc: "Detailed surveys, master planning and statutory groundwork.",
+  },
+  {
+    step: "03",
+    title: "Development Strategy",
+    desc: "Financial modelling, phasing and design language for the asset.",
+  },
+  {
+    step: "04",
+    title: "Construction & Delivery",
+    desc: "On-time, on-budget execution with rigorous quality assurance.",
+  },
 ];
 
 const TESTIMONIALS = [
@@ -86,149 +125,153 @@ const TESTIMONIALS = [
 ];
 
 function Index() {
-  const featured = PROJECTS.slice(0, 6);
+  const [showTagline, setShowTagline] = useState(false);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setShowTagline(true));
+
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   return (
     <SiteLayout>
       {/* HERO */}
-      <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden bg-foreground text-background">
-        <img
-          src={hero}
-          alt="Modern skyline at golden hour"
-          width={1920}
-          height={1280}
-          className="absolute inset-0 h-full w-full object-cover animate-slow-zoom"
+      <section className="relative isolate flex min-h-[700px] items-center overflow-hidden bg-foreground text-background md:min-h-[780px] lg:h-screen lg:min-h-[700px]">
+        <video
+          src="/15908990_1920_1080_30fps.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/55 to-foreground/20" />
-        <div className="container-px relative z-10 mx-auto w-full max-w-7xl pb-24 pt-40">
-          <div className="max-w-3xl animate-fade-up">
-            <span className="eyebrow eyebrow-line text-gold">Kinikh Infrastructure</span>
-            <h1 className="mt-6 font-serif text-5xl leading-[1.02] tracking-tight text-background sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-              Building Landmarks <em className="not-italic text-gold">for Tomorrow.</em>
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 w-full px-6 py-32 md:px-10 md:py-36 lg:px-14 lg:py-44 xl:px-16">
+          <div className="max-w-2xl">
+            <div className="hero-tagline-wrapper">
+              <p
+                className={`hero-tagline mb-5 text-[11px] uppercase ${
+                  showTagline ? "hero-tagline-visible" : ""
+                }`}
+              >
+                Discover Spaces That Inspire.
+              </p>
+            </div>
+            <h1 className="animate-hero-heading font-serif text-[42px] leading-[1.02] tracking-tight text-white sm:text-[48px] md:text-[56px] lg:text-[64px] xl:text-[72px]">
+              Building Landmarks <em className="not-italic text-white/80">for Tomorrow.</em>
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-background/80 md:text-lg">
+            <p className="mt-6 max-w-lg animate-hero-content text-[14px] leading-[1.75] text-white/55 md:text-[15px]">
               Kinikh Infrastructure develops trusted residential, commercial, and infrastructure
               projects designed for long-term value.
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-8 flex animate-hero-content flex-wrap gap-3">
               <Link
                 to="/projects"
-                className="group inline-flex items-center gap-3 rounded-full bg-gold px-7 py-4 text-xs font-medium uppercase tracking-[0.2em] text-gold-foreground transition-all hover:bg-background hover:text-foreground"
+                className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-all hover:bg-white/90"
               >
                 Explore Projects
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/contact"
-                className="group inline-flex items-center gap-3 rounded-full border border-background/30 px-7 py-4 text-xs font-medium uppercase tracking-[0.2em] text-background backdrop-blur transition-all hover:border-background hover:bg-background hover:text-foreground"
+                className="group inline-flex items-center gap-2.5 rounded-full border border-white/35 px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all hover:border-white/70 hover:bg-white/8"
               >
                 Contact Us
-                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
+            </div>
+            <div className="mt-12 flex animate-hero-content items-stretch divide-x divide-white/15">
+              {HERO_STATS.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="pr-8 first:pl-0 last:pr-0 [&:not(:first-child)]:pl-8"
+                >
+                  <div className="text-[24px] font-semibold leading-none tracking-tight text-white md:text-[30px]">
+                    {stat.value}
+                  </div>
+                  <div className="mt-2 text-[10px] font-medium uppercase tracking-[0.2em] text-white/40">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-        <div className="absolute bottom-8 right-6 z-10 hidden text-[10px] uppercase tracking-[0.3em] text-background/50 md:block">
+        <div className="absolute bottom-8 right-8 z-10 hidden text-[10px] uppercase tracking-[0.3em] text-white/30 md:block">
           Scroll to explore ↓
         </div>
       </section>
 
-      {/* SEARCH BAR */}
-      <section className="relative -mt-14 z-20">
-        <div className="container-px mx-auto max-w-6xl">
-          <div className="rounded-2xl bg-card p-6 shadow-elegant ring-1 ring-border md:p-8">
-            <div className="mb-5 flex items-center gap-3">
-              <Search className="h-4 w-4 text-gold" />
-              <span className="text-xs font-medium uppercase tracking-[0.25em] text-muted-foreground">
-                Find your next investment
+      {/* ABOUT PREVIEW */}
+      <section className="bg-white">
+        <div className="container-px mx-auto max-w-[1700px] py-28 md:py-36 lg:py-44">
+          <div className="grid gap-12 lg:grid-cols-[0.42fr_1fr] lg:gap-20">
+            <div>
+              <span className="text-base font-bold tracking-tight text-[#0b0b0b] md:text-lg">
+                Why Kinikh
               </span>
             </div>
-            <div className="grid gap-4 md:grid-cols-4">
-              {[
-                { label: "Location", options: ["Pune", "Mumbai", "Lonavala", "Hyderabad"] },
-                { label: "Project Type", options: ["Residential", "Commercial", "Land", "Mixed Use"] },
-                { label: "Budget Range", options: ["Under ₹50L", "₹50L – ₹1Cr", "₹1Cr – ₹3Cr", "₹3Cr+"] },
-                { label: "Status", options: ["Upcoming", "Ongoing", "Completed"] },
-              ].map((f) => (
-                <label key={f.label} className="flex flex-col gap-1.5">
-                  <span className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
-                    {f.label}
-                  </span>
-                  <select className="rounded-lg border border-border bg-background px-3 py-3 text-sm text-foreground focus:border-gold focus:outline-none">
-                    <option value="">Any</option>
-                    {f.options.map((o) => (
-                      <option key={o}>{o}</option>
-                    ))}
-                  </select>
-                </label>
-              ))}
-            </div>
-            <div className="mt-5 flex justify-end">
-              <Link
-                to="/projects"
-                className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-xs font-medium uppercase tracking-[0.2em] text-background transition-colors hover:bg-gold hover:text-gold-foreground"
-              >
-                Search Projects
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+            <div>
+              <h2 className="max-w-5xl text-4xl font-bold leading-[1.02] tracking-tight text-[#050505] sm:text-5xl lg:text-6xl">
+                <span>Your life’s changing. Don’t just find a place — find what’s next. </span>
+                <span className="text-[#b8b8b8]">
+                  We help you move forward with clarity, confidence, and the right guidance by your
+                  side.
+                </span>
+              </h2>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ABOUT PREVIEW */}
-      <section className="container-px mx-auto max-w-7xl py-28">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
-          <div className="relative">
-            <img
-              src={about}
-              alt="Kinikh leadership on a project site"
-              width={1280}
-              height={1280}
-              loading="lazy"
-              className="aspect-[4/5] w-full rounded-2xl object-cover shadow-card"
-            />
-            <div className="absolute -bottom-8 -right-4 hidden w-64 rounded-2xl bg-foreground p-6 text-background shadow-elegant md:block">
-              <div className="font-serif text-4xl text-gold">10+</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.2em] text-background/70">
-                Years of Trust
-              </div>
-            </div>
-          </div>
-          <div>
-            <span className="eyebrow eyebrow-line">About Kinikh</span>
-            <h2 className="mt-5 font-serif text-4xl leading-tight tracking-tight md:text-5xl">
-              A decade of building with discipline, design and trust.
+      <ShowcaseSection />
+
+      {/* BEYOND REAL ESTATE */}
+      <section className="bg-white px-5 py-16 sm:px-8 md:py-20 lg:px-10 lg:py-20">
+        <div className="mx-auto max-w-[1700px]">
+          <div className="mx-auto text-center">
+            <h2 className="text-[32px] font-bold leading-none tracking-[-0.045em] text-[#0B0705] sm:text-[29px] lg:text-[59px]">
+              <span>This isn’t just </span>
+              <span className="text-[#B7A895]">about real estate.</span>
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              Since 2014, Kinikh Infrastructure has shaped neighbourhoods, business districts and
-              civic corridors across Western India. We bring together architects, engineers and
-              investors to deliver real estate that holds its value for generations.
+          </div>
+
+          <div className="mx-auto mt-12 grid max-w-[880px] gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-[24px]">
+            {PROJECTS.slice(0, 4).map((project) => (
+              <div
+                key={project.id}
+                className="relative h-[260px] overflow-hidden [clip-path:polygon(0_0,70%_0,100%_50%,70%_100%,0_100%,34%_50%)] sm:h-[320px] lg:h-[305px]"
+              >
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  width={1280}
+                  height={960}
+                  loading="lazy"
+                  className="h-full w-full object-cover [filter:sepia(0.25)_saturate(0.85)_brightness(0.9)_contrast(1.08)_hue-rotate(-8deg)]"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-[#8A4F18]/25 mix-blend-multiply" />
+              </div>
+            ))}
+          </div>
+
+          <div className="mx-auto mt-12 max-w-[1000px] text-center">
+            <p className="text-[22px] font-bold leading-[1.05] tracking-[-0.035em] text-[#0B0705] sm:text-[18px] lg:text-[32px]">
+              It’s about identity. Progress. Getting unstuck.
             </p>
-            <ul className="mt-7 space-y-3">
-              {[
-                "Vertically integrated development team",
-                "Transparent pricing and milestone reporting",
-                "On-time delivery across every completed project",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-3 text-sm text-foreground">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <Link
-              to="/about"
-              className="mt-9 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.2em] text-foreground"
-            >
-              Read our story
-              <ArrowRight className="h-4 w-4 text-gold" />
-            </Link>
+            <p className="mt-2 text-[22px] font-bold leading-[1.05] tracking-[-0.035em] text-[#0B0705] sm:text-[18px] lg:text-[32px]">
+              <span>You’re not just looking for a place. </span>
+              <span className="text-[#B7A895]">
+                You’re looking for alignment. That’s what we help you find.
+              </span>
+            </p>
           </div>
         </div>
       </section>
 
-      {/* SERVICES */}
+      <InfrastructureRewired />
+
+      {/* SERVICES — temporarily hidden
       <section className="bg-beige py-28">
         <div className="container-px mx-auto max-w-7xl">
           <div className="grid items-end gap-8 md:grid-cols-[1fr_auto]">
@@ -258,111 +301,15 @@ function Index() {
                 <h3 className="font-serif text-2xl tracking-tight">{s.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
                 <div className="mt-6 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-foreground">
-                  Learn More <ArrowRight className="h-3.5 w-3.5 text-gold transition-transform group-hover:translate-x-1" />
+                  Learn More{" "}
+                  <ArrowRight className="h-3.5 w-3.5 text-gold transition-transform group-hover:translate-x-1" />
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* FEATURED PROJECTS */}
-      <section className="container-px mx-auto max-w-7xl py-28">
-        <div className="grid items-end gap-8 md:grid-cols-[1fr_auto]">
-          <div className="max-w-2xl">
-            <span className="eyebrow eyebrow-line">Selected work</span>
-            <h2 className="mt-5 font-serif text-4xl leading-tight tracking-tight md:text-5xl">
-              Featured projects shaping skylines.
-            </h2>
-          </div>
-          <Link to="/projects" className="hidden items-center gap-2 text-sm font-medium uppercase tracking-[0.2em] md:inline-flex">
-            View All <ArrowRight className="h-4 w-4 text-gold" />
-          </Link>
-        </div>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {featured.map((p) => (
-            <Link
-              key={p.id}
-              to="/projects/$projectId"
-              params={{ projectId: p.id }}
-              className="group overflow-hidden rounded-2xl bg-card ring-1 ring-border transition-all hover:-translate-y-1 hover:shadow-elegant"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  width={1280}
-                  height={960}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-110"
-                />
-                <span
-                  className={`absolute left-4 top-4 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] ${
-                    p.status === "Ongoing"
-                      ? "bg-gold text-gold-foreground"
-                      : p.status === "Upcoming"
-                        ? "bg-background/90 text-foreground"
-                        : "bg-foreground/90 text-background"
-                  }`}
-                >
-                  {p.status}
-                </span>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  <MapPin className="h-3.5 w-3.5 text-gold" /> {p.location}
-                </div>
-                <h3 className="mt-3 font-serif text-2xl tracking-tight">{p.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground line-clamp-2">
-                  {p.shortDescription}
-                </p>
-                <div className="mt-5 flex items-center justify-between border-t border-border pt-5 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  <span>
-                    {p.type} · {p.area}
-                  </span>
-                  <ChevronRight className="h-4 w-4 text-gold transition-transform group-hover:translate-x-1" />
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* WHY CHOOSE */}
-      <section className="relative overflow-hidden bg-foreground py-28 text-background">
-        <div className="container-px mx-auto max-w-7xl">
-          <div className="grid gap-14 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-            <div>
-              <span className="eyebrow eyebrow-line">Why Kinikh</span>
-              <h2 className="mt-5 font-serif text-4xl leading-tight tracking-tight md:text-5xl">
-                A trusted infrastructure partner, every step of the way.
-              </h2>
-              <p className="mt-6 text-base leading-relaxed text-background/70">
-                We are obsessed with the details that turn a project into a landmark — the land
-                diligence, the structural integrity, the finish quality and the resale value years
-                from now.
-              </p>
-              <Link
-                to="/about"
-                className="mt-8 inline-flex items-center gap-3 rounded-full border border-background/30 px-6 py-3 text-xs font-medium uppercase tracking-[0.2em] transition-colors hover:bg-gold hover:text-gold-foreground hover:border-gold"
-              >
-                More about us <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-background/10">
-              {STATS.map((s) => (
-                <div key={s.label} className="bg-foreground p-8 md:p-10">
-                  <div className="font-serif text-5xl text-gold md:text-6xl">{s.value}</div>
-                  <div className="mt-3 text-xs uppercase tracking-[0.2em] text-background/70">
-                    {s.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      */}
 
       {/* PROCESS */}
       <section className="container-px mx-auto max-w-7xl py-28">
@@ -387,7 +334,7 @@ function Index() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="bg-beige py-28">
+      <section className="bg-white py-28">
         <div className="container-px mx-auto max-w-7xl">
           <div className="mx-auto mb-14 max-w-2xl text-center">
             <span className="eyebrow">Voices of trust</span>
@@ -422,38 +369,8 @@ function Index() {
         </div>
       </section>
 
-      {/* CTA BANNER */}
-      <section className="container-px mx-auto max-w-7xl py-20">
-        <div className="relative overflow-hidden rounded-3xl bg-foreground p-10 text-background md:p-16">
-          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-gold/20 blur-3xl" />
-          <div className="relative grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
-            <div>
-              <span className="eyebrow text-gold">Let's build together</span>
-              <h2 className="mt-4 font-serif text-4xl leading-tight tracking-tight md:text-5xl">
-                Looking for a trusted infrastructure partner?
-              </h2>
-              <p className="mt-4 max-w-xl text-background/70">
-                Whether you are a homeowner, investor, or institution — we would love to understand
-                your goals and how Kinikh can deliver them.
-              </p>
-            </div>
-            <div className="flex flex-wrap justify-start gap-3 md:justify-end">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-gold px-7 py-4 text-xs font-medium uppercase tracking-[0.2em] text-gold-foreground transition-colors hover:bg-background hover:text-foreground"
-              >
-                Start a conversation <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/projects"
-                className="inline-flex items-center gap-2 rounded-full border border-background/30 px-7 py-4 text-xs font-medium uppercase tracking-[0.2em] hover:bg-background hover:text-foreground"
-              >
-                See Projects <TrendingUp className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <KinikhServiceTabs />
+      <BottomVideoCTA />
     </SiteLayout>
   );
 }

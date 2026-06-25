@@ -2,6 +2,14 @@
 @source "../src";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: "MADE Tommy Soft";
+  src: url("/fonts/MADETommySoftMedium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -35,8 +43,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "MADE Tommy Soft", "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "MADE Tommy Soft", "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --shadow-elegant: 0 30px 60px -30px color-mix(in oklab, var(--foreground) 25%, transparent);
   --shadow-card: 0 10px 30px -12px color-mix(in oklab, var(--foreground) 18%, transparent);
@@ -45,7 +53,7 @@
 :root {
   --radius: 0.5rem;
 
-  --background: oklch(0.99 0.005 80);
+  --background: oklch(1 0 0);
   --foreground: oklch(0.14 0.01 60);
 
   --card: oklch(1 0 0);
@@ -69,7 +77,7 @@
   --gold: oklch(0.72 0.13 70);
   --gold-foreground: oklch(0.14 0.01 60);
 
-  --beige: oklch(0.95 0.02 80);
+  --beige: oklch(1 0 0);
 
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.99 0 0);
@@ -103,15 +111,24 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+    font-size: 70%;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4, .font-serif {
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-serif {
     font-family: var(--font-serif);
     letter-spacing: -0.01em;
   }
@@ -119,8 +136,12 @@
 
 @utility container-px {
   padding-inline: 1.25rem;
-  @media (min-width: 768px) { padding-inline: 2.5rem; }
-  @media (min-width: 1280px) { padding-inline: 4rem; }
+  @media (min-width: 768px) {
+    padding-inline: 2.5rem;
+  }
+  @media (min-width: 1280px) {
+    padding-inline: 4rem;
+  }
 }
 
 @utility eyebrow {
@@ -144,24 +165,87 @@
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+.hero-tagline-wrapper {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.hero-tagline {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  opacity: 0;
+  transform: translateY(100%);
+  will-change: transform, opacity;
+}
+
+.hero-tagline-visible {
+  animation: taglineReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+@keyframes taglineReveal {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes slow-zoom {
-  from { transform: scale(1.05); }
-  to { transform: scale(1.15); }
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.15);
+  }
 }
 
 @utility animate-fade-up {
   animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@utility animate-hero-heading {
+  animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.65s both;
+}
+@utility animate-hero-content {
+  animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.85s both;
 }
 @utility animate-fade-in {
   animation: fade-in 1.2s ease-out both;
 }
 @utility animate-slow-zoom {
   animation: slow-zoom 14s ease-out infinite alternate;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

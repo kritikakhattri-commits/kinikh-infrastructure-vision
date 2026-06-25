@@ -22,7 +22,7 @@ export function PageHero({
   subtitle?: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-beige pb-20 pt-40">
+    <section className="relative overflow-hidden bg-white pb-20 pt-40">
       <div className="container-px mx-auto max-w-7xl">
         <div className="max-w-3xl">
           <span className="eyebrow eyebrow-line">{eyebrow}</span>

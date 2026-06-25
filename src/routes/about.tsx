@@ -79,7 +79,7 @@ function AboutPage() {
       </section>
 
       {/* Mission / Vision */}
-      <section className="bg-beige py-24">
+      <section className="bg-white py-24">
         <div className="container-px mx-auto grid max-w-7xl gap-6 md:grid-cols-2">
           {[
             {
@@ -154,7 +154,7 @@ function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="bg-beige py-24">
+      <section className="bg-white py-24">
         <div className="container-px mx-auto max-w-5xl">
           <div className="mb-14 text-center">
             <span className="eyebrow">A decade in motion</span>
