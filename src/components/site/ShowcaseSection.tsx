@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export function ShowcaseSection() {
   return (
-    <section className="bg-white px-5 py-12 sm:px-8 md:py-16 lg:px-10">
+    <section className="bg-white px-5 py-20 sm:px-8 md:py-28 lg:px-10 lg:py-32">
       <motion.div
         initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}

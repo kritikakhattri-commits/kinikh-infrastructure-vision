@@ -21,10 +21,9 @@ const STEPS = [
 
 export default function InfrastructureRewired() {
   return (
-    <section className="bg-white px-5 py-16 sm:px-8 md:py-20 lg:px-10 lg:py-24">
+    <section className="bg-white px-5 py-28 sm:px-8 md:py-40 lg:px-10">
       <div className="mx-auto max-w-[1700px]">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20 lg:items-start">
-
           {/* Left — heading + CTA */}
           <div>
             <h2 className="text-[48px] font-bold leading-[1.0] tracking-[-0.045em] text-[#0B0705] sm:text-[56px] lg:text-[72px]">
@@ -60,7 +59,6 @@ export default function InfrastructureRewired() {
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </section>

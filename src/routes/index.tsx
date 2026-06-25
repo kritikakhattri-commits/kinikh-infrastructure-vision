@@ -10,7 +10,6 @@ import {
   Home,
   LineChart,
   MapPin,
-  Quote,
   Star,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
@@ -103,27 +102,6 @@ const PROCESS = [
   },
 ];
 
-const TESTIMONIALS = [
-  {
-    name: "Aarav Mehta",
-    role: "Investor, Skyline Residences",
-    quote:
-      "Kinikh delivered six months ahead of schedule with a finish that exceeded the brochure. They are the rare developer who keeps every promise.",
-  },
-  {
-    name: "Priya Iyer",
-    role: "Director, Atlas Capital",
-    quote:
-      "From land acquisition to handover, the transparency and discipline of the Kinikh team set a new benchmark for our portfolio.",
-  },
-  {
-    name: "Rohan Kulkarni",
-    role: "Homeowner, Vista Villas",
-    quote:
-      "Buying from Kinikh felt less like a transaction and more like a partnership. Our family adores the home they built for us.",
-  },
-];
-
 function Index() {
   const [showTagline, setShowTagline] = useState(false);
 
@@ -204,17 +182,17 @@ function Index() {
 
       {/* ABOUT PREVIEW */}
       <section className="bg-white">
-        <div className="container-px mx-auto max-w-[1700px] py-28 md:py-36 lg:py-44">
+        <div className="container-px mx-auto max-w-[1700px] py-28 md:py-40">
           <div className="grid gap-12 lg:grid-cols-[0.42fr_1fr] lg:gap-20">
             <div>
-              <span className="text-base font-bold tracking-tight text-[#0b0b0b] md:text-lg">
-                Why Kinikh
-              </span>
+              <p className="text-sm font-bold !text-[#0B0705]">Why Kinikh</p>
             </div>
             <div>
-              <h2 className="max-w-5xl text-4xl font-bold leading-[1.02] tracking-tight text-[#050505] sm:text-5xl lg:text-6xl">
-                <span>Your life’s changing. Don’t just find a place — find what’s next. </span>
-                <span className="text-[#b8b8b8]">
+              <h2 className="max-w-5xl text-5xl font-bold leading-[0.95] tracking-[-0.05em] !text-[#0B0705] md:text-6xl lg:text-7xl">
+                <span className="!text-[#0B0705]">
+                  Your life’s changing. Don’t just find a place — find what’s next.
+                </span>{" "}
+                <span className="!text-[#B8B8B8]">
                   We help you move forward with clarity, confidence, and the right guidance by your
                   side.
                 </span>
@@ -227,7 +205,7 @@ function Index() {
       <ShowcaseSection />
 
       {/* BEYOND REAL ESTATE */}
-      <section className="bg-white px-5 py-16 sm:px-8 md:py-20 lg:px-10 lg:py-20">
+      <section className="bg-white px-5 py-24 sm:px-8 md:py-32 lg:px-10">
         <div className="mx-auto max-w-[1700px]">
           <div className="mx-auto text-center">
             <h2 className="text-[32px] font-bold leading-none tracking-[-0.045em] text-[#0B0705] sm:text-[29px] lg:text-[59px]">
@@ -312,7 +290,7 @@ function Index() {
       */}
 
       {/* PROCESS */}
-      <section className="container-px mx-auto max-w-7xl py-28">
+      <section className="container-px mx-auto max-w-7xl py-24 md:py-32">
         <div className="mx-auto max-w-2xl text-center">
           <span className="eyebrow">Our process</span>
           <h2 className="mt-5 font-serif text-4xl leading-tight tracking-tight md:text-5xl">
@@ -330,42 +308,6 @@ function Index() {
               )}
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="bg-white py-28">
-        <div className="container-px mx-auto max-w-7xl">
-          <div className="mx-auto mb-14 max-w-2xl text-center">
-            <span className="eyebrow">Voices of trust</span>
-            <h2 className="mt-5 font-serif text-4xl leading-tight tracking-tight md:text-5xl">
-              What our partners say.
-            </h2>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {TESTIMONIALS.map((t) => (
-              <figure
-                key={t.name}
-                className="flex h-full flex-col rounded-2xl bg-card p-8 ring-1 ring-border"
-              >
-                <Quote className="h-7 w-7 text-gold" />
-                <blockquote className="mt-5 flex-1 font-serif text-xl leading-snug text-foreground">
-                  “{t.quote}”
-                </blockquote>
-                <div className="mt-7 flex items-center gap-1 text-gold">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
-                <figcaption className="mt-4 border-t border-border pt-4">
-                  <div className="font-medium text-foreground">{t.name}</div>
-                  <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                    {t.role}
-                  </div>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
         </div>
       </section>
 

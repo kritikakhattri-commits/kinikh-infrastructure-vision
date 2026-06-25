@@ -5,7 +5,6 @@ import { Menu, X } from "lucide-react";
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
-  { to: "/projects", label: "Projects" },
   { to: "/services", label: "Services" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -24,9 +23,7 @@ export function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-background/90 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
+        scrolled ? "bg-background/90 backdrop-blur-md border-b border-border" : "bg-transparent"
       }`}
     >
       <div className="container-px mx-auto flex h-20 max-w-7xl items-center justify-between">

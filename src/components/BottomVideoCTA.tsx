@@ -21,7 +21,7 @@ export default function BottomVideoCTA() {
       {/* Centered content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center gap-8 px-5 text-center">
         <h2 className="max-w-4xl text-4xl font-semibold leading-[1.08] tracking-[-0.02em] text-white md:text-6xl lg:text-7xl">
-          Find You. We'll Help You Get There.
+          Kinikh. We'll Help You Get There.
         </h2>
 
         <Link
